@@ -18,7 +18,7 @@ from scipy import signal
 import os
 
 def _mel_to_linear_matrix(sr, n_fft, n_mels):
-    m = librosa.filters.mel(sr, n_fft, n_mels)
+    m = librosa.filters.mel(sr=sr, n_fft=n_fft, n_mels=n_mels)
     m_t = np.transpose(m)
     p = np.matmul(m, m_t)
     d = [1.0 / x if np.abs(x) > 1.0e-8 else x for x in np.sum(p, axis=0)]
