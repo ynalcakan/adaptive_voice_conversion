@@ -104,6 +104,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     # load config file 
     with open(args.config) as f:
-        config = yaml.load(f)
+        config = yaml.safe_load(f)
     inferencer = Inferencer(config=config, args=args)
     inferencer.inference_from_path()
