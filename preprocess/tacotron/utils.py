@@ -152,7 +152,7 @@ def invert_spectrogram(spectrogram):
     '''
     spectrogram: [f, t]
     '''
-    return librosa.istft(spectrogram, hp.hop_length, win_length=hp.win_length, window="hann")
+    return librosa.istft(stft_matrix=spectrogram, hop_length=hp.hop_length, win_length=hp.win_length, window="hann")
 
 
 def plot_alignment(alignment, gs):
