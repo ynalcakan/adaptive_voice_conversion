@@ -41,7 +41,7 @@ class Inferencer(object):
 
     def load_model(self):
         print(f'Load model from {self.args.model}')
-        self.model.load_state_dict(torch.jit.load(f'{self.args.model}'))
+        self.model.jit.load(f'{self.args.model}')
         return
 
     def build_model(self): 
