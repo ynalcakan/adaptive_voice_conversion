@@ -30,23 +30,31 @@ class Inferencer(object):
         self.args = args
         print(self.args)
 
-        # init the model with config
-        self.build_model()
+        # # init the model with config
+        # self.build_model()
 
-        # load model
-        self.load_model()
+        # # load model
+        # self.load_model()
+
+        self.build_load_model()
 
         with open(self.args.attr, 'rb') as f:
             self.attr = pickle.load(f)
 
     def load_model(self):
         print(f'Load model from {self.args.model}')
-        self.model.jit.load(f'{self.args.model}')
+        self.model.load_state_dict(torch.load(f'{self.args.model}'))
         return
 
     def build_model(self): 
         # create model, discriminator, optimizers
         self.model = cc(AE(self.config))
+        print(self.model)
+        self.model.eval()
+        return
+    
+    def build_load_model(self):
+        self.model = torch.jit.load(f'{self.args.model}')
         print(self.model)
         self.model.eval()
         return
